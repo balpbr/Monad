@@ -1,27 +1,27 @@
-const fly = document.getElementById('fly');
-const gameContainer = document.querySelector('.game-container');
-
-let score = 0;
-
-function getRandomPosition() {
-    const containerRect = gameContainer.getBoundingClientRect();
-    const x = Math.floor(Math.random() * (containerRect.width - fly.offsetWidth));
-    const y = Math.floor(Math.random() * (containerRect.height - fly.offsetHeight));
-    return { x, y };
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
 }
 
-function moveFly() {
-    const { x, y } = getRandomPosition();
-    fly.style.left = `${x}px`;
-    fly.style.top = `${y}px`;
+.game-container {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    overflow: hidden;
 }
 
-fly.addEventListener('click', () => {
-    score++;
-    alert(`Mosca morta! Pontuação: ${score}`);
-    moveFly();
-});
-
-setInterval(moveFly, 1000);
-
-moveFly();  // Mova a mosca inicialmente
+.fly {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('fly.png'); /* Use o URL da sua imagem */
+    background-size: cover;
+    cursor: pointer;
+}
