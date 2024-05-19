@@ -14,25 +14,15 @@ body {
     height: 80vh;
     background-color: #ffffff;
     border: 1px solid #000000;
+    overflow: hidden;
 }
 
-.paddle {
+.fly {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 100px;
-    height: 20px;
-    background-color: #0000ff;
-    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-image: url('https://i.imgur.com/FlyoD6S.png'); /* Imagem de uma mosca */
+    background-size: cover;
+    cursor: pointer;
 }
 
-.ball {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: #ff0000;
-    border-radius: 50%;
-    transform: translateX(-50%);
-}
