@@ -5,7 +5,7 @@ let scoreElement = document.getElementById('score');
 let score = 0;
 let timeLeft = 60;
 let gameInterval;
-let splatSound = new Audio('splat.mp3'); // Carrega o som
+let splatSound = new Audio('SPLAT.mp3'); // Carrega o som
 
 function startGame() {
     gameInterval = setInterval(() => {
@@ -41,7 +41,7 @@ function spawnFly() {
     fly.addEventListener('click', () => {
         score++;
         scoreElement.textContent = `Pontuação: ${score}`;
-        splatSound.play(); // Reproduz o som
+       SPLATSound.play(); // Reproduz o som
         fly.remove();
         spawnFly();
     });
