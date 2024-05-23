@@ -1,27 +1,52 @@
-const fly = document.getElementById('fly');
-const gameContainer = document.querySelector('.game-container');
+let gameArea = document.getElementById('game-area');
+let timerElement = document.getElementById('timer');
+let scoreElement = document.getElementById('score');
 
 let score = 0;
+let timeLeft = 60;
+let gameInterval;
+let splatSound = new Audio('splat.mp3'); // Carrega o som
 
-function getRandomPosition() {
-    const containerRect = gameContainer.getBoundingClientRect();
-    const x = Math.floor(Math.random() * (containerRect.width - fly.offsetWidth));
-    const y = Math.floor(Math.random() * (containerRect.height - fly.offsetHeight));
-    return { x, y };
+function startGame() {
+    gameInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = `Tempo: ${timeLeft}s`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(gameInterval);
+            alert('Tempo esgotado! Pontuação: ' + score);
+        }
+    }, 1000);
+
+    spawnFly();
 }
 
-function moveFly() {
-    const { x, y } = getRandomPosition();
-    fly.style.left = `${x}px`;
-    fly.style.top = `${y}px`;
+function spawnFly() {
+    let fly = document.createElement('div');
+    fly.classList.add('fly');
+
+    let size = Math.random() * 150 + 50; // Tamanho entre 20px e 50px
+    fly.style.width = `${size}px`;
+    fly.style.height = `${size}px`;
+
+    let posX = Math.random() * (gameArea.clientWidth - size);
+    let posY = Math.random() * (gameArea.clientHeight - size);
+
+    fly.style.left = `${posX}px`;
+    fly.style.top = `${posY}px`;
+
+    let flip = Math.random() > 0.5 ? 'scaleX(-1)' : 'scaleX(1)';
+    fly.style.transform = flip;
+
+    fly.addEventListener('click', () => {
+        score++;
+        scoreElement.textContent = `Pontuação: ${score}`;
+        splatSound.play(); // Reproduz o som
+        fly.remove();
+        spawnFly();
+    });
+
+    gameArea.appendChild(fly);
 }
 
-fly.addEventListener('click', () => {
-    score++;
-    alert(`Mosca morta! Pontuação: ${score}`);
-    moveFly();
-});
-
-setInterval(moveFly, 1000);
-
-moveFly();  // Mova a mosca inicialmente
+startGame();

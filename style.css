@@ -1,27 +1,50 @@
 body {
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: center;
+flex-direction: column;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    margin: 0;
+    background-color: #200052;
+    font-family: Arial, sans-serif;
 }
 
-.game-container {
+
+h1 {
+    center: 20px;
+    font-size: 2.5em;
+    color: #F7EDE8;
+}
+
+#game-area {
     position: relative;
-    width: 80vw;
-    height: 80vh;
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    width: 80%;
+    height: 80%;
+    background-color: #cdc4fb;
+    border: 2px solid #A0055D;
     overflow: hidden;
+}
+
+#timer, #score {
+    position: absolute;
+    top: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#timer {
+    left: 10px;
+}
+
+#score {
+    right: 10px;
 }
 
 .fly {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url('fly.png'); /* Use o URL da sua imagem */
-    background-size: cover;
+    background-image: url('image/fly.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     cursor: pointer;
 }
